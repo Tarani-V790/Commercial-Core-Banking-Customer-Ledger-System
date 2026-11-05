@@ -1,0 +1,10 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.3; ranksep=0.45; node [fontname="Arial", fontsize=10]; edge [fontname="Arial", fontsize=8];
+ node [shape=box, style=filled, fillcolor="#fff3cd"]; cust [label="Customer"]; staff [label="Teller / Manager"]; aud [label="Auditor"]; pay [label="Payment Network"];
+ node [shape=ellipse, fillcolor="#dbe8ff"]; p1 [label="1.0\nCustomer Onboarding\n& KYC"]; p2 [label="2.0\nAccount\nManagement"]; p3 [label="3.0\nTransaction\nProcessing"]; p4 [label="4.0\nLedger Posting\n(Double Entry)"]; p5 [label="5.0\nMIS / DSS\nReporting"]; p6 [label="6.0\nAuthentication\n& Audit"];
+ node [shape=cylinder, fillcolor="#e2f0d9"]; d1 [label="D1 Customers"]; d2 [label="D2 Accounts"]; d3 [label="D3 Transactions"]; d4 [label="D4 Ledger Entries"]; d5 [label="D5 Users & Audit Log"];
+ cust -> p1 [xlabel="application + KYC"]; p1 -> d1 [xlabel="customer record"]; p1 -> cust [xlabel="CIF number"];
+ staff -> p6 [xlabel="credentials"]; p6 -> d5 [xlabel="login / audit"]; p6 -> staff [xlabel="session token"];
+ d1 -> p2 [xlabel="verified customer"]; staff -> p2 [xlabel="open account"]; p2 -> d2 [xlabel="new account"];
+ cust -> p3 [xlabel="transaction request"]; staff -> p3 [xlabel="teller entry"]; d2 -> p3 [xlabel="balance, status"]; p3 -> pay [xlabel="payment instruction"]; pay -> p3 [xlabel="status"];
+ p3 -> d3 [xlabel="txn header"]; p3 -> p4 [xlabel="validated txn"]; p4 -> d4 [xlabel="DR/CR lines"]; p4 -> d2 [xlabel="updated balance"]; p4 -> cust [xlabel="receipt"];
+ d2 -> p5; d3 -> p5; d4 -> p5; d1 -> p5; p5 -> staff [xlabel="KPIs, DSS reports"]; p5 -> aud [xlabel="trial balance"]; aud -> p6 [xlabel="audit query"]; }

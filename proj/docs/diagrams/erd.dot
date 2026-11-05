@@ -1,0 +1,12 @@
+digraph G { rankdir=LR; bgcolor="white"; node [shape=record, fontname="Arial", fontsize=9, style=filled, fillcolor="#f8fbff"]; edge [fontname="Arial", fontsize=8, arrowhead=crow, arrowtail=tee, dir=both];
+ branches [label="{branches|PK branch_id\lbranch_code\lbranch_name\lcity\lifsc_code\l}"];
+ customers [label="{customers|PK customer_id\lcif_no (UQ)\lfull_name, dob, gender\lpan (UQ), phone, email\laddress, city\lkyc_status, risk_category\lFK branch_id\lcreated_at\l}"];
+ account_types [label="{account_types|PK type_id\ltype_name\linterest_pct\lmin_balance\l}"];
+ accounts [label="{accounts|PK account_id\laccount_no (UQ)\lFK customer_id\lFK type_id\lFK branch_id\lopen_date, status\lbalance\l}"];
+ loans [label="{loans|PK loan_id\lFK customer_id\lFK account_id\lprincipal, interest_pct\ltenure_months, outstanding\lstatus, disbursed_on\l}"];
+ transactions [label="{transactions|PK txn_id\ltxn_ref (UQ)\ltxn_date\lFK txn_type_id\lFK channel_id\lnarration, status\l}"];
+ ledger_entries [label="{ledger_entries|PK entry_id\lFK txn_id\lFK account_id (nullable)\lFK gl_id (nullable)\lentry_type DR/CR\lamount, balance_after\l}"];
+ transaction_types [label="{transaction_types|PK txn_type_id\ltype_code\ldescription\l}"]; channels [label="{channels|PK channel_id\lchannel_name\l}"];
+ gl_accounts [label="{gl_accounts|PK gl_id\lgl_code, gl_name\lcategory\l}"]; users [label="{users|PK user_id\lusername (UQ)\lpassword_hash\lrole\lFK branch_id\l}"]; audit_log [label="{audit_log|PK log_id\ltable_name, record_id\laction, details\llogged_at\l}"];
+ branches -> customers [label="1:N"]; branches -> accounts; branches -> users; customers -> accounts [label="1:N"]; account_types -> accounts [label="1:N"]; customers -> loans; accounts -> loans;
+ accounts -> ledger_entries [label="1:N"]; gl_accounts -> ledger_entries; transactions -> ledger_entries [label="1:N (>=2)"]; transaction_types -> transactions; channels -> transactions; }

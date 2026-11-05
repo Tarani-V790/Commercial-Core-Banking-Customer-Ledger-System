@@ -1,0 +1,8 @@
+{
+  "name": "core-banking-backend",
+  "version": "1.0.0",
+  "description": "REST API for the Commercial Core Banking Customer & Ledger System (MBA Technology for Management project)",
+  "main": "src/server.js",
+  "scripts": { "start": "node src/server.js" },
+  "dependencies": { "express": "^4.19.2", "mysql2": "^3.9.7" }
+}

@@ -1,0 +1,10 @@
+digraph G { rankdir=LR; bgcolor="white"; node [fontname="Arial", fontsize=11]; edge [fontname="Arial", fontsize=9];
+ sys [label="0\nCommercial Core Banking\nCustomer & Ledger System", shape=circle, style=filled, fillcolor="#dbe8ff", width=2.2];
+ node [shape=box, style=filled, fillcolor="#fff3cd"];
+ cust [label="Customer"]; teller [label="Teller / Branch Staff"]; mgr [label="Branch Manager"]; aud [label="Auditor / Compliance"]; rbi [label="RBI / Regulator"]; npci [label="Payment Network\n(UPI / NEFT / IMPS / RTGS)"];
+ cust -> sys [label="Account request, KYC documents,\ntransaction instruction"]; sys -> cust [label="Receipt, statement, alerts"];
+ teller -> sys [label="Deposit / withdraw / transfer entries"]; sys -> teller [label="Posting confirmation, balances"];
+ mgr -> sys [label="KYC approval, report request"]; sys -> mgr [label="DSS reports, KPIs"];
+ aud -> sys [label="Audit query"]; sys -> aud [label="Trial balance, audit log"];
+ sys -> rbi [label="Regulatory returns, STR/CTR"]; 
+ sys -> npci [label="Payment instruction"]; npci -> sys [label="Settlement status"]; }

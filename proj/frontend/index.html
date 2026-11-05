@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commercial Core Banking – Customer & Ledger System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="login" class="login">
+  <div class="card login-card">
+    <h1>Core Banking</h1><p class="muted">Customer &amp; Ledger System</p>
+    <label>Username<input id="u" autocomplete="username"></label>
+    <label>Password<input id="p" type="password" autocomplete="current-password"></label>
+    <button id="loginBtn" class="primary">Sign in</button>
+    <p id="loginErr" class="err"></p>
+    <p class="muted small">Demo users: admin / manager1 / teller1 / auditor1 &nbsp;(passwords: admin123, manager123, teller123, auditor123)</p>
+  </div>
+</section>
+
+<div id="app" hidden>
+  <header>
+    <strong>Commercial Core Banking</strong>
+    <nav id="nav">
+      <button data-tab="dashboard" class="active">Dashboard</button>
+      <button data-tab="customers">Customers</button>
+      <button data-tab="accounts">Accounts</button>
+      <button data-tab="txn">Transactions</button>
+      <button data-tab="reports">DSS Reports</button>
+    </nav>
+    <span><span id="who"></span> <button id="logout">Log out</button></span>
+  </header>
+  <main>
+    <div id="msg" class="msg" hidden></div>
+
+    <section id="tab-dashboard">
+      <div id="kpis" class="grid"></div>
+      <div class="grid2">
+        <div class="card"><h3>Deposits by branch (₹)</h3><div id="chartBranch"></div></div>
+        <div class="card"><h3>Transactions per month</h3><div id="chartMonth"></div></div>
+      </div>
+    </section>
+
+    <section id="tab-customers" hidden>
+      <div class="card">
+        <div class="row"><input id="custSearch" placeholder="Search name / CIF / PAN"><button id="custSearchBtn">Search</button></div>
+        <div class="scroll"><table id="custTable"></table></div>
+      </div>
+      <div class="card">
+        <h3>Onboard new customer (KYC starts as PENDING)</h3>
+        <div class="form">
+          <input id="c_name" placeholder="Full name"><input id="c_dob" type="date">
+          <select id="c_gender"><option value="M">Male</option><option value="F">Female</option><option value="O">Other</option></select>
+          <input id="c_pan" placeholder="PAN (ABCDE1234F)" maxlength="10"><input id="c_phone" placeholder="Mobile (10 digits)" maxlength="10">
+          <input id="c_email" placeholder="E-mail"><input id="c_addr" placeholder="Address"><input id="c_city" placeholder="City" value="Chennai">
+          <select id="c_branch"></select><button id="addCust" class="primary">Create customer</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-accounts" hidden>
+      <div class="card"><div class="scroll"><table id="accTable"></table></div></div>
+      <div class="card">
+        <h3>Open account</h3>
+        <div class="form">
+          <select id="a_cust"></select><select id="a_type"></select>
+          <input id="a_dep" type="number" min="0" placeholder="Opening deposit (₹)"><button id="addAcc" class="primary">Open account</button>
+        </div>
+      </div>
+      <div class="card"><h3 id="stmtTitle">Account statement</h3><div class="scroll"><table id="stmtTable"></table></div></div>
+    </section>
+
+    <section id="tab-txn" hidden>
+      <div class="grid3">
+        <div class="card"><h3>Deposit</h3><div class="stack">
+          <select id="d_acc" class="accsel"></select><input id="d_amt" type="number" min="1" placeholder="Amount (₹)">
+          <input id="d_nar" placeholder="Narration"><button id="doDep" class="primary">Post deposit</button></div></div>
+        <div class="card"><h3>Withdraw</h3><div class="stack">
+          <select id="w_acc" class="accsel"></select><input id="w_amt" type="number" min="1" placeholder="Amount (₹)">
+          <input id="w_nar" placeholder="Narration"><button id="doWd" class="primary">Post withdrawal</button></div></div>
+        <div class="card"><h3>Transfer</h3><div class="stack">
+          <select id="t_from" class="accsel"></select><select id="t_to" class="accsel"></select>
+          <select id="t_ch"><option>UPI</option><option>NEFT</option><option>IMPS</option><option>RTGS</option><option>NETBANKING</option></select>
+          <input id="t_amt" type="number" min="1" placeholder="Amount (₹)"><button id="doTr" class="primary">Post transfer</button></div></div>
+      </div>
+      <div class="card"><h3>Latest 100 postings</h3><div class="scroll"><table id="txnTable"></table></div></div>
+    </section>
+
+    <section id="tab-reports" hidden>
+      <div class="card">
+        <div class="row"><select id="repSel"></select><button id="repRun" class="primary">Run report</button><button id="repCsv">Export CSV</button></div>
+        <div class="scroll"><table id="repTable"></table></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

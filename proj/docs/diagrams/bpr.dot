@@ -1,0 +1,6 @@
+digraph G { rankdir=TB; bgcolor="white"; node [fontname="Arial", fontsize=10, shape=box, style="rounded,filled"]; edge [fontname="Arial", fontsize=9];
+ subgraph cluster_a { label="AS-IS (manual, paper-based)"; fontname="Arial"; style=dashed; node [fillcolor="#fde2e2"];
+  a1 [label="Customer fills paper\nKYC form"]; a2 [label="Clerk re-keys data\ninto ledger book"]; a3 [label="Manual signature &\nbalance check"]; a4 [label="End-of-day manual\ntally (2-3 hrs)"]; a5 [label="Monthly MIS compiled\nin spreadsheets (3-5 days)"]; a1->a2->a3->a4->a5; }
+ subgraph cluster_b { label="TO-BE (re-engineered with Core Banking System)"; fontname="Arial"; style=dashed; node [fillcolor="#d9f2e3"];
+  b1 [label="Single digital KYC entry\n(validated PAN/mobile)"]; b2 [label="Automatic CIF & account\ncreation"]; b3 [label="Stored-procedure posting:\nbalance & status checked in-line"]; b4 [label="Real-time trial balance\n(DR = CR proof)"]; b5 [label="On-demand DSS reports\n(seconds)"]; b1->b2->b3->b4->b5; }
+ a1->b1 [style=dotted, label="BPR"]; a2->b2 [style=dotted]; a3->b3 [style=dotted]; a4->b4 [style=dotted]; a5->b5 [style=dotted]; }
