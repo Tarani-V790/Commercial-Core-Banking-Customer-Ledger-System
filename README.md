@@ -7,7 +7,10 @@ The application integrates a MySQL database, Node.js and Express REST API, and a
 ##  Project Information
 
 - **Project Title:** Commercial Core Banking Customer & Ledger System
-- **Developed By:** 1.Harinishreya C     2.Joel saji george     3.Lalit padihar
+- **Developed By:**
+- 1.Harinishreya C
+- 2.Joel saji george
+- 3.Lalit padihar
 - **Project Domain:** Banking and Financial Management
 - **Project Type:** Full-Stack Web Application
 - **Database:** MySQL
@@ -241,7 +244,9 @@ All sample banking data is fictitious.
 
 ##  Author
 
-**Harinishreya C      Joel saji george       Lalit padihar**
+**Harinishreya C
+Joel saji george       
+Lalit padihar**
 
 Commercial Core Banking Customer & Ledger System
 
